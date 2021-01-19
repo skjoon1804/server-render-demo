@@ -38,6 +38,10 @@ const data = {
 const app = new express();
 app.use(express.static("dist"));    // in dist directory will serve as a static file to demonstrate
 
+app.get("/data", async(req, res) => {
+    res.json(data);
+})
+
 app.get('/', async (req, res) => {
     const index = readFileSync(`public/index.html`, `utf8`);
     const rendered = renderToString(<App {...data} />);
